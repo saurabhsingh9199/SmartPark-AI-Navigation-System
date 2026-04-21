@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartPark — Admin Panel</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🅿</span>
+      <div>
+        <span class="logo-title">SmartPark</span>
+        <span class="logo-sub">Admin Control Panel</span>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="/" class="nav-link">User Panel</a>
+      <a href="/admin" class="nav-link active">Admin Panel</a>
+    </nav>
+  </div>
+</header>
+
+<main class="main-container">
+
+  <aside class="sidebar">
+    <div class="panel-card">
+      <h2 class="panel-title">⚙️ Controls</h2>
+
+      <label class="field-label">Select Floor</label>
+      <div class="floor-tabs" id="floorTabs"></div>
+
+      <label class="field-label">Edit Mode</label>
+      <div class="algo-toggle">
+        <button class="algo-btn active" data-mode="occupy" id="modeOccupy">Mark Occupied</button>
+        <button class="algo-btn" data-mode="free" id="modeFree">Mark Empty</button>
+      </div>
+
+      <button class="find-btn reset-btn" id="resetBtn">
+        🔄 Reset All Floors
+      </button>
+
+      <div class="status-box" id="statusBox">
+        <p class="status-idle">Click on a cell to toggle its state</p>
+      </div>
+    </div>
+
+    <!-- Stats panel -->
+    <div class="panel-card">
+      <h2 class="panel-title">📈 Floor Summary</h2>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <span class="stat-label">Total Spots</span>
+          <span class="stat-value" id="totalSpots">—</span>
+        </div>
+        <div class="stat-item bfs-color">
+          <span class="stat-label">Available</span>
+          <span class="stat-value" id="availSpots">—</span>
+        </div>
+        <div class="stat-item dfs-color">
+          <span class="stat-label">Occupied</span>
+          <span class="stat-value" id="occSpots">—</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Occupancy</span>
+          <span class="stat-value" id="occRate">—</span>
+        </div>
+      </div>
+      <div class="occ-bar-wrap">
+        <div class="occ-bar" id="occBar"></div>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <h2 class="panel-title">🗺 Legend</h2>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot entry"></span>Entry Gate (locked)</div>
+        <div class="legend-item"><span class="legend-dot empty"></span>Empty — click to occupy</div>
+        <div class="legend-item"><span class="legend-dot occupied"></span>Occupied — click to free</div>
+      </div>
+    </div>
+  </aside>
+
+  <section class="grid-section">
+    <div class="floor-label" id="floorLabel">Floor 1</div>
+    <div class="admin-hint">Click any spot to toggle its state</div>
+    <div class="grid-wrapper">
+      <div class="parking-grid admin-grid" id="parkingGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<script src="/static/js/admin.js"></script>
+</body>
+</html>

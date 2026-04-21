@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartPark — Navigation System</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🅿</span>
+      <div>
+        <span class="logo-title">SmartPark</span>
+        <span class="logo-sub">AI Navigation System</span>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="/" class="nav-link active">User Panel</a>
+      <a href="/admin" class="nav-link">Admin Panel</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── MAIN ───────────────────────────────── -->
+<main class="main-container">
+
+  <!-- Controls sidebar -->
+  <aside class="sidebar">
+    <div class="panel-card">
+      <h2 class="panel-title">🚦 Navigation</h2>
+
+      <label class="field-label">Select Floor</label>
+      <div class="floor-tabs" id="floorTabs"></div>
+
+      <label class="field-label">Algorithm</label>
+      <div class="algo-toggle">
+        <button class="algo-btn active" data-algo="dijkstra">Dijkstra</button>
+      </div>
+
+      <button class="find-btn" id="findBtn">
+        <span class="find-btn-icon">🚗</span>
+        Find Parking
+      </button>
+
+      <div class="status-box" id="statusBox">
+        <p class="status-idle">Select a floor and click Find Parking</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="panel-card" id="statsCard" style="display:none">
+      <h2 class="panel-title">📊 Results</h2>
+      <div class="stat-grid">
+        <div class="stat-item dijkstra-color">
+          <span class="stat-label">Dijkstra Path</span>
+          <span class="stat-value" id="dijkstraPath">—</span>
+        </div>
+        <div class="stat-item dijkstra-color">
+          <span class="stat-label">Dijkstra Visited</span>
+          <span class="stat-value" id="dijkstraVisited">—</span>
+        </div>
+        <div class="stat-item dijkstra-color">
+          <span class="stat-label">Dijkstra Time</span>
+          <span class="stat-value" id="dijkstraTime">—</span>
+        </div>
+      </div>
+
+      <!-- Bar chart canvas -->
+      <canvas id="compChart" height="160"></canvas>
+    </div>
+
+    <!-- Legend -->
+    <div class="panel-card">
+      <h2 class="panel-title">🗺 Legend</h2>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot entry"></span>Entry Gate</div>
+        <div class="legend-item"><span class="legend-dot empty"></span>Empty Spot</div>
+        <div class="legend-item"><span class="legend-dot occupied"></span>Occupied</div>
+        <div class="legend-item"><span class="legend-dot dijkstra-path"></span>Dijkstra Path</div>
+        <div class="legend-item"><span class="legend-dot dest"></span>Destination ⭐</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Grid area -->
+  <section class="grid-section">
+    <div class="floor-label" id="floorLabel">Floor 1</div>
+    <div class="grid-wrapper">
+      <div class="parking-grid" id="parkingGrid"></div>
+    </div>
+    <div class="car-overlay" id="carOverlay"></div>
+  </section>
+
+</main>
+
+<!-- Audio -->
+<audio id="foundSound" preload="auto">
+  <source src="/static/sounds/found.mp3" type="audio/mpeg"/>
+  <source src="/static/sounds/found.wav" type="audio/wav"/>
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/static/js/main.js"></script>
+</body>
+</html>
